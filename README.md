@@ -4,6 +4,17 @@
 [![Go Version](https://img.shields.io/badge/Go-1.19-blue.svg)](https://golang.org/doc/go1.19)
 [![React Version](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
+[![Gin Framework](https://img.shields.io/badge/Gin-1.7.7-red.svg)](https://gin-gonic.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4.4.x-green.svg)](https://www.mongodb.com/)
+[![GORM](https://img.shields.io/badge/GORM-1.22-blue.svg)](https://gorm.io/)
+[![SMTP](https://img.shields.io/badge/SMTP-Email%20Service-blue.svg)](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)
+[![bcrypt](https://img.shields.io/badge/bcrypt-Password%20Hashing-orange.svg)](https://github.com/golang/crypto/blob/master/bcrypt/bcrypt.go)
+[![REST API](https://img.shields.io/badge/RESTful-API-lightgrey.svg)](https://en.wikipedia.org/wiki/Representational_state_transfer)
+[![HTML](https://img.shields.io/badge/HTML5-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.0-blue.svg)](https://tailwindcss.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+
 
 > A full-stack employee management system built using **React**, **Go**, and **MongoDB** with role-based access control, email notifications, and employee management.
 
