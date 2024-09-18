@@ -76,3 +76,11 @@ WorkforcePro/
 │   ├── public/
 │   └── package.json          # Project dependencies
 └── README.md                 # Project documentation (this file)
+
+## Setup Instructions
+
+### Prerequisites
+- **Go**: Ensure Go is installed (version 1.19 or later). [Download Go](https://golang.org/dl/)
+- **Node.js**: Install Node.js (version 18.x or later). [Download Node.js](https://nodejs.org/)
+- **MongoDB**: Set up MongoDB as your database. [MongoDB Setup](https://docs.mongodb.com/manual/installation/)
+- **Golang Gin**: Ensure you have installed the Gin framework. `go get github.com/gin-gonic/gin`
