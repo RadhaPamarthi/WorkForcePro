@@ -14,7 +14,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.0-blue.svg)](https://tailwindcss.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-> A full-stack employee management system built using **React**, **Go**, and **MongoDB** with role-based access control, email notifications, and employee management.
+> A full-stack employee management system built using **Golang**, **React**, and **MongoDB** with role-based access control, email notifications, and employee management.
 
 ## Demo Login page 
 ![image](https://github.com/user-attachments/assets/322e5706-f056-48e2-9fec-2a82cc990309)
