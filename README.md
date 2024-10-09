@@ -16,6 +16,13 @@
 
 > A full-stack employee management system built using **React**, **Go**, and **MongoDB** with role-based access control, email notifications, and employee management.
 
+## Demo Login page 
+![image](https://github.com/user-attachments/assets/322e5706-f056-48e2-9fec-2a82cc990309)
+
+## Demo Dashboard page 
+![image](https://github.com/user-attachments/assets/c5f83ccf-4d67-4237-a72b-aa1c73226db2)
+
+
 ---
 
 ## Table of Contents
@@ -93,6 +100,6 @@ WorkforcePro/
 
 ```
 
-##Demo Login page 
-![image](https://github.com/user-attachments/assets/322e5706-f056-48e2-9fec-2a82cc990309)
+
+
 
