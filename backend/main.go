@@ -1,4 +1,4 @@
-// server.go
+// main.go
 package main
 
 import (
@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	// Connect to MongoDB
+
 	router := gin.Default()
 
 	// Configure CORS middleware
@@ -17,7 +19,6 @@ func main() {
 	config.AllowMethods = []string{"GET", "POST", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept"}
 
-	// Apply CORS middleware to the router
 	router.Use(cors.New(config))
 
 	// Routes

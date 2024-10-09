@@ -14,13 +14,12 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.0-blue.svg)](https://tailwindcss.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-
-
 > A full-stack employee management system built using **React**, **Go**, and **MongoDB** with role-based access control, email notifications, and employee management.
 
 ---
 
 ## Table of Contents
+
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
@@ -36,18 +35,24 @@
 ## Features
 
 ### 🛠️ Employee Management
+
 - **Add Employees**: Input information like name, role, gender, nationality, email, etc.
 - **View Employees**: View a list of all employees in a grid-based layout.
 - **Email Notifications**: Employees receive login credentials via email upon registration.
+- **Auto-Generated Employee ID**: Employee ID is automatically generated based on the first two letters from the employee's first name and last name, followed by a random 4-digit number.
+- **Auto-Generated Password** : A secure, random 10-character password is automatically generated for each employee and included in the email.
 
 ### 🛡️ Role-Based Access Control
+
 - **HR Role**: Can add and manage employees, view dashboards, and manage tasks.
 - **Employee Role**: Can log in and view their individual dashboard with relevant information.
 
 ### 📧 Automatic Email Notifications
+
 - When an employee is added, they automatically receive a welcome email with their login credentials.
 
 ### 📊 MongoDB Integration
+
 - All employee data is saved to MongoDB, ensuring a scalable and flexible database solution.
 
 ---
@@ -63,6 +68,7 @@
 ## Setup Instructions
 
 ### Prerequisites
+
 - **Go**: Ensure Go is installed (version 1.19 or later). [Download Go](https://golang.org/dl/)
 - **Node.js**: Install Node.js (version 18.x or later). [Download Node.js](https://nodejs.org/)
 - **MongoDB**: Set up MongoDB as your database. [MongoDB Setup](https://docs.mongodb.com/manual/installation/)
@@ -85,3 +91,4 @@ WorkforcePro/
 │   └── package.json          # Project dependencies
 └── README.md                 # Project documentation (this file)
 
+```

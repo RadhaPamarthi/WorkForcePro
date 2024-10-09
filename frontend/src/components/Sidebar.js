@@ -18,7 +18,7 @@ const Sidebar = ({ sidenavOpen, onMenuClick }) => {
         </h1>
         <div id="profile" className="space-y-3">
           <img
-            src={process.env.PUBLIC_URL + '/images/Radha1.jpg'}
+            src={process.env.PUBLIC_URL + '/images/Radha1.jpeg'}
             alt="Avatar user"
             className="w-10 md:w-16 rounded-full mx-auto"
           />

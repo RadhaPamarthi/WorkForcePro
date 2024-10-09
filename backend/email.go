@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/smtp"
+	// Correct import for the `database` package
 )
 
 // sendWelcomeEmail sends a welcome email to the new employee

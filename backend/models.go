@@ -2,10 +2,10 @@
 package main
 
 // User struct for login credentials
-type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
+// type User struct {
+// 	Username string `json:"username"`
+// 	Password string `json:"password"`
+// }
 
 // Employee struct for employee registration
 type Employee struct {
