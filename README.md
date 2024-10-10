@@ -18,12 +18,13 @@
 
 > A full-stack employee management system built using **Golang**, **React**, and **MongoDB** with role-based access control, email notifications, and employee management.
 
-## Demo Login page 
+## Demo Login page
+
 ![image](https://github.com/user-attachments/assets/322e5706-f056-48e2-9fec-2a82cc990309)
 
-## Demo Dashboard page 
-![image](https://github.com/user-attachments/assets/c5f83ccf-4d67-4237-a72b-aa1c73226db2)
+## Demo Dashboard page
 
+![image](https://github.com/user-attachments/assets/c5f83ccf-4d67-4237-a72b-aa1c73226db2)
 
 ---
 
@@ -75,6 +76,7 @@
 - **Testing**: Testify and mtest for unit testing.
 
 ---
+
 ## Testing
 
 We have implemented unit tests for the **login handler** using **Testify** and **mtest**. The tests ensure that the login functionality works correctly by interacting with a mock MongoDB collection.
@@ -83,7 +85,27 @@ We have implemented unit tests for the **login handler** using **Testify** and *
 
 - **Testify**: Used for assertions in the unit tests, simplifying test comparisons and validations.
 - **mtest**: Mock MongoDB tests that simulate database operations like fetching and decoding user data from the `users` collection.
-  
+
+## Performance Testing with k6
+
+We performed load testing on the `login` endpoint of WorkforcePro using **k6** to evaluate how the system performs under load.
+
+### **Test Setup**:
+
+- **Virtual Users (VUs)**: 100
+- **Duration**: 30 seconds
+- **Endpoint Tested**: `/login`
+- **Test Tool**: [k6](https://k6.io/)
+
+### **Metrics Summary**:
+
+- **Total Requests**: 2,884
+- **Average Response Time**: 55.07ms
+- **Median Response Time**: 40.95ms
+- **90th Percentile Response Time**: 57.21ms
+- **95th Percentile Response Time**: 75.48ms
+- **Success Rate**: 100% (No failed requests)
+
 ---
 
 ## Setup Instructions
@@ -113,7 +135,3 @@ WorkforcePro/
 └── README.md                 # Project documentation (this file)
 
 ```
-
-
-
-
