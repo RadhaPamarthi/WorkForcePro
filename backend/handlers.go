@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +12,21 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// Define the User struct to match the MongoDB document structure
+// Define the Employee struct to match MongoDB document structure
+// type Employee struct {
+// 	EmployeeID  string `json:"employeeID" bson:"employeeID"`
+// 	FirstName   string `json:"firstName" bson:"firstName"`
+// 	LastName    string `json:"lastName" bson:"lastName"`
+// 	Email       string `json:"email" bson:"email"`
+// 	DOB         string `json:"dob" bson:"dob"`
+// 	Role        string `json:"role" bson:"role"`
+// 	Gender      string `json:"gender" bson:"gender"`
+// 	Nationality string `json:"nationality" bson:"nationality"`
+// 	PhoneNumber string `json:"phoneNumber" bson:"phoneNumber"`
+// 	Password    string `json:"password" bson:"password"` // Auto-generated password
+// }
+
+// Define the User struct for login
 type User struct {
 	Email    string `json:"email" bson:"email"`
 	Password string `json:"password" bson:"password"`
@@ -24,22 +37,10 @@ var client *mongo.Client
 
 // Init function to connect to MongoDB
 func init() {
-	// MongoDB connection URI from environment variable
-	uri := os.Getenv("MONGO_URI")
-	if uri == "" {
-		// Fallback to hardcoded URI if environment variable is not set
-		uri = "mongodb+srv://iamradha0246:IcrOVusDHSrGh0X2@cluster0.rhzjo.mongodb.net/?retryWrites=true&w=majority"
-	}
-
-	// Create client options with custom settings
-	clientOptions := options.Client().
-		ApplyURI(uri).
-		SetMaxPoolSize(100).                         // Set max connection pool size
-		SetServerSelectionTimeout(30 * time.Second). // Set server selection timeout
-		SetConnectTimeout(10 * time.Second).         // Set connection timeout
-		SetSocketTimeout(30 * time.Second)           // Set socket timeout
+	uri := "mongodb+srv://iamradha0246:IcrOVusDHSrGh0X2@cluster0.rhzjo.mongodb.net/?retryWrites=true&w=majority"
 
 	// Create MongoDB client and connect
+	clientOptions := options.Client().ApplyURI(uri).SetMaxPoolSize(100).SetServerSelectionTimeout(30 * time.Second).SetConnectTimeout(10 * time.Second).SetSocketTimeout(30 * time.Second)
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
@@ -54,13 +55,6 @@ func init() {
 	if err != nil {
 		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
-
-	// Debugging: List available databases
-	databases, err := client.ListDatabaseNames(ctx, bson.M{})
-	if err != nil {
-		log.Fatalf("Failed to list databases: %v", err)
-	}
-	log.Printf("Databases: %v\n", databases)
 
 	log.Println("Successfully connected to MongoDB!")
 }
@@ -80,7 +74,7 @@ func login(c *gin.Context) {
 	log.Printf("Received credentials: email=%s\n", creds.Email)
 
 	// Connect to MongoDB collection
-	collection := client.Database("WorkforcePro").Collection("users") // Ensure database/collection name is correct
+	collection := client.Database("WorkforcePro").Collection("users")
 
 	// Find user by email (case-insensitive)
 	var storedUser User
@@ -100,7 +94,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	// Check if the provided password matches the one in the database (without hashing for now)
+	// Check if the provided password matches the one in the database
 	if creds.Password == storedUser.Password {
 		log.Println("Login successful")
 		c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
@@ -110,6 +104,7 @@ func login(c *gin.Context) {
 	}
 }
 
+// Handler to add employee details
 func addEmployee(c *gin.Context) {
 	var newEmployee Employee
 	log.Println("Receiving new employee registration")
@@ -130,8 +125,19 @@ func addEmployee(c *gin.Context) {
 	log.Printf("Generated Password: %s", newEmployee.Password)
 	log.Printf("Received employee details: %+v\n", newEmployee)
 
-	// Send welcome email
-	err := sendWelcomeEmail(newEmployee.Email, newEmployee.FirstName, newEmployee.EmployeeID, newEmployee.Password)
+	// Connect to MongoDB collection
+	collection := client.Database("WorkforcePro").Collection("users")
+
+	// Insert employee data into MongoDB
+	_, err := collection.InsertOne(context.TODO(), newEmployee)
+	if err != nil {
+		log.Println("Failed to insert employee into MongoDB:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add employee"})
+		return
+	}
+
+	// Send welcome email with Employee ID and password
+	err = sendWelcomeEmail(newEmployee.Email, newEmployee.FirstName, newEmployee.EmployeeID, newEmployee.Password)
 	if err != nil {
 		log.Println("Failed to send welcome email:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to send welcome email"})
