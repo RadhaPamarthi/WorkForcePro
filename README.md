@@ -153,9 +153,7 @@ WorkforcePro/
   ```bash
   go get github.com/gin-gonic/gin
 
-###Swagger: Install the Swagger package for Go.
-  ```bash
-  go get -u github.com/swaggo/swag/cmd/swag
+
 
 ###📄 License
 This project is licensed under the MIT License.
