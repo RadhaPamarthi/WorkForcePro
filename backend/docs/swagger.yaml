@@ -1,0 +1,100 @@
+basePath: /
+definitions:
+  main.Employee:
+    properties:
+      dob:
+        type: string
+      email:
+        type: string
+      employeeID:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: string
+      lastName:
+        type: string
+      nationality:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+      role:
+        type: string
+    type: object
+  main.User:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is the API documentation for the WorkforcePro application.
+  title: WorkforcePro API
+  version: "1.0"
+paths:
+  /add-employee:
+    post:
+      consumes:
+      - application/json
+      description: Register a new employee in the system.
+      parameters:
+      - description: Employee information
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/main.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Employee added
+          schema:
+            $ref: '#/definitions/main.Employee'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+        "500":
+          description: Failed to add employee
+          schema:
+            type: string
+      summary: Add a new employee
+      tags:
+      - employees
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login using email and password.
+      parameters:
+      - description: User email and password
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/main.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful
+          schema:
+            type: string
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+        "401":
+          description: Invalid email or password
+          schema:
+            type: string
+      summary: Login a user
+      tags:
+      - auth
+swagger: "2.0"

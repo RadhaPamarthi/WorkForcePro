@@ -12,7 +12,13 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// Define the Employee struct to match MongoDB document structure
+// Define the User and Employee structs to match the MongoDB document structure
+
+type User struct {
+	Email    string `json:"email" bson:"email"`
+	Password string `json:"password" bson:"password"`
+}
+
 // type Employee struct {
 // 	EmployeeID  string `json:"employeeID" bson:"employeeID"`
 // 	FirstName   string `json:"firstName" bson:"firstName"`
@@ -23,24 +29,26 @@ import (
 // 	Gender      string `json:"gender" bson:"gender"`
 // 	Nationality string `json:"nationality" bson:"nationality"`
 // 	PhoneNumber string `json:"phoneNumber" bson:"phoneNumber"`
-// 	Password    string `json:"password" bson:"password"` // Auto-generated password
+// 	Password    string `json:"password" bson:"password"`
 // }
-
-// Define the User struct for login
-type User struct {
-	Email    string `json:"email" bson:"email"`
-	Password string `json:"password" bson:"password"`
-}
 
 // MongoDB client setup (global variable)
 var client *mongo.Client
 
 // Init function to connect to MongoDB
 func init() {
+	// MongoDB connection URI
 	uri := "mongodb+srv://iamradha0246:IcrOVusDHSrGh0X2@cluster0.rhzjo.mongodb.net/?retryWrites=true&w=majority"
 
+	// Create client options with custom settings
+	clientOptions := options.Client().
+		ApplyURI(uri).
+		SetMaxPoolSize(100).
+		SetServerSelectionTimeout(30 * time.Second).
+		SetConnectTimeout(10 * time.Second).
+		SetSocketTimeout(30 * time.Second)
+
 	// Create MongoDB client and connect
-	clientOptions := options.Client().ApplyURI(uri).SetMaxPoolSize(100).SetServerSelectionTimeout(30 * time.Second).SetConnectTimeout(10 * time.Second).SetSocketTimeout(30 * time.Second)
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
@@ -59,7 +67,16 @@ func init() {
 	log.Println("Successfully connected to MongoDB!")
 }
 
-// Login handler to fetch user data from MongoDB and check credentials
+// @Summary Login a user
+// @Description Login using email and password.
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Param user body User true "User email and password"
+// @Success 200 {string} string "Login successful"
+// @Failure 400 {string} string "Invalid request payload"
+// @Failure 401 {string} string "Invalid email or password"
+// @Router /login [post]
 func login(c *gin.Context) {
 	var creds User
 	log.Println("Receiving login request")
@@ -104,7 +121,16 @@ func login(c *gin.Context) {
 	}
 }
 
-// Handler to add employee details
+// @Summary Add a new employee
+// @Description Register a new employee in the system.
+// @Tags employees
+// @Accept  json
+// @Produce  json
+// @Param employee body Employee true "Employee information"
+// @Success 200 {object} Employee "Employee added"
+// @Failure 400 {string} string "Invalid request payload"
+// @Failure 500 {string} string "Failed to add employee"
+// @Router /add-employee [post]
 func addEmployee(c *gin.Context) {
 	var newEmployee Employee
 	log.Println("Receiving new employee registration")
@@ -125,7 +151,7 @@ func addEmployee(c *gin.Context) {
 	log.Printf("Generated Password: %s", newEmployee.Password)
 	log.Printf("Received employee details: %+v\n", newEmployee)
 
-	// Connect to MongoDB collection
+	// Connect to MongoDB collection (use "users" collection)
 	collection := client.Database("WorkforcePro").Collection("users")
 
 	// Insert employee data into MongoDB
