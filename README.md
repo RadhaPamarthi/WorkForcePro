@@ -142,8 +142,7 @@ WorkforcePro/
 │   └── package.json             # Project dependencies
 └── README.md                    # Project documentation (this file)
 ```
-markdown
-Copy code
+
 ## 🚀 Setup Instructions
 
 ### Prerequisites
@@ -153,56 +152,11 @@ Copy code
 - **Golang Gin**: Ensure you have installed the Gin framework.  
   ```bash
   go get github.com/gin-gonic/gin
-Swagger: Install the Swagger package for Go.
-bash
-Copy code
-go get -u github.com/swaggo/swag/cmd/swag
-Frontend Setup
-Navigate to the frontend directory:
-bash
-Copy code
-cd frontend
-Install the required dependencies:
-bash
-Copy code
-npm install
-Backend Setup
-Navigate to the backend directory:
-bash
-Copy code
-cd backend
-Install the required dependencies:
-bash
-Copy code
-go mod download
-Generate the Swagger API documentation:
-bash
-Copy code
-swag init
-Running the Application
-Start the backend server:
-bash
-Copy code
-go run main.go
-In a separate terminal, start the frontend development server:
-bash
-Copy code
-npm run start
-Open your browser and visit:
-bash
-Copy code
-http://localhost:3000
-🌐 API Endpoints
-POST /api/login: User login endpoint
-POST /api/employees: Create a new employee
-GET /api/employees: Retrieve all employees
-GET /api/employees/
-: Retrieve a specific employee by ID
-PUT /api/employees/
-: Update an employee's information
-DELETE /api/employees/
-: Delete an employee
-For detailed information about each endpoint, please refer to the Swagger API Documentation.
 
-📄 License
+###Swagger: Install the Swagger package for Go.
+  ```bash
+  go get -u github.com/swaggo/swag/cmd/swag
+
+
+##📄 License
 This project is licensed under the MIT License.
